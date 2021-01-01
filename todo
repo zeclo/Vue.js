@@ -1,0 +1,32 @@
+■気になること
+・jestってなんだ
+・ESlintはAirbnbにしてみみた
+・Vue ruterはまだ分からない
+・yornとは、FaceBookが作ったnpm。
+
+■主なスケジュール
+・12月中は基本操作を理解する(DB登録処理、コミット、ファイル作成、CSV取り込み、text、jsonも、画面複数タブ、
+　　タグの定義(クラス、IDをどう設定しておくか)、セキュリティ対策で考えること)
+・1月、リファクタリング(Docstringを導入、リントツールの導入)
+・2月、自動テスト
+・3月、アウトプットとして用意するドキュメント
+
+Vueを実行するときは以下のコマンドを。
+cd sample
+npm run dev
+
+■Vue.jsの環境準備
+  参考  https://qiita.com/567000/items/dde495d6a8ad1c25fa43
+  vue-cli のインストール
+  npm install -g @vue/cli
+
+  プロジェクトの作成→設定は
+  vue create my-project
+  ※vue init xxxx というコマンドがあるが、それはcli2.0系で今では非推奨。
+
+  vue.config.jsファイルの作成(gitpodで動かすために追加で必要な作業)
+  参考　https://upd.world/vue-cli-3-error/
+
+  プロジェクトフォルダへ移動→実行
+  cd my-project
+  npm run serve

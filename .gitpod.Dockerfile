@@ -12,3 +12,4 @@ USER gitpod
 # More information: https://www.gitpod.io/docs/config-docker/
 
 RUN npm install -g @vue/cli @vue/cli-init
+RUN npm install --save-dev eslint eslint-plugin-vue
