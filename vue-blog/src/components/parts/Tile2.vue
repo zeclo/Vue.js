@@ -12,46 +12,49 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  reactive,
-  onMounted,
-  computed,
-  ref,
-} from 'vue';
-
-// import { computed, defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { useStore } from 'vuex';
 
-type Props = {
-  id: any;
-};
+// import { Options, Vue, props } from 'vue-class-component';
 
 export default defineComponent({
   // props 親要素から受け取るプロパティの定義
   props: {
-    id: {
-      type: Number,
-    },
+    id: Number,
   },
 
-  setup(props: Props) {
-    const store = useStore();
+  /*
+  data: () => ({
+    hoverFlag: {
+      type: Boolean,
+      default: false,
+    },
+  }),
+  */
 
-    const csvData = computed(() => store.state.csvData[props.id][0]);
-    const hoverFlag = computed(() => store.state.hoverFlag);
-
-    const mouseOverAction = () => store.commit('hoverFlagOn');
-    const mouseLeaveAction = () => store.commit('hoverFlagOff');
+  setup(props: any, context) {
+    const store2 = useStore();
+    const csvData = computed(() => store2.state.csvData[props.id][0]);
+    const hoverFlag = computed(() => store2.state.hoverFlag);
 
     // expose bindings on render context
     return {
       csvData,
       hoverFlag,
-      mouseOverAction,
-      mouseLeaveAction,
     };
   },
+
+  methods: {
+    mouseOverAction(): void {
+      const store = useStore();
+      useStore.commit('hoverFlagOn');
+    },
+    mouseLeaveAction(): void {
+      const store = useStore();
+      useStore.dispatch('hoverFlagOff');
+    },
+  },
+
 });
 </script>
 
