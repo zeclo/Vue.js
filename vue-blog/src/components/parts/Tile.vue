@@ -1,6 +1,6 @@
 <template>
   <div class="tile">
-    <h1>{{csvData}}</h1>
+    <h1>{{csvData}}あれれー</h1>
   </div>
   <div class="css-fukidashi">
     <p class="text" v-on:mouseover="mouseOverAction" v-on:mouseleave="mouseLeaveAction">
@@ -20,31 +20,27 @@ import {
   ref,
 } from 'vue';
 
-// import { computed, defineComponent } from 'vue';
 import { useStore } from 'vuex';
 
-type Props = {
-  id: any;
-};
-
 export default defineComponent({
-  // props 親要素から受け取るプロパティの定義
+  // props 親要素から受け取る値の定義する
   props: {
     id: {
       type: Number,
     },
   },
 
-  setup(props: Props) {
+  setup(props) {
+    // vuexの呼び出し
     const store = useStore();
 
-    const csvData = computed(() => store.state.csvData[props.id][0]);
+    const csvData = computed(() => store.state.csvData[Number(props.id)][0]);
     const hoverFlag = computed(() => store.state.hoverFlag);
 
     const mouseOverAction = () => store.commit('hoverFlagOn');
     const mouseLeaveAction = () => store.commit('hoverFlagOff');
 
-    // expose bindings on render context
+    // return内でsetup内で定義したconstを呼び出す
     return {
       csvData,
       hoverFlag,
