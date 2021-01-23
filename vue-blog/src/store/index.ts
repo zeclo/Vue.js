@@ -11,9 +11,9 @@ export default createStore({
       { sakuradouri: '丸の内' },
     ],
     csvData: [
-      ['サイト名1', 'サイトURL1'],
-      ['サイト名2', 'サイトURL2'],
-      ['サイト名3', 'サイトURL3'],
+      ['サイト名1', 'サイトURL1', false],
+      ['サイト名2', 'サイトURL2', false],
+      ['サイト名3', 'サイトURL3', false],
     ],
     hoverFlag: false,
   },
@@ -32,20 +32,20 @@ export default createStore({
     increment(state, payload) {
       state.count += payload.amount;
     },
-    hoverFlagOn(state) {
-      state.hoverFlag = true;
+    hoverFlagOn2(state, val) {
+      state.csvData[val][2] = true;
     },
-    hoverFlagOff(state) {
-      state.hoverFlag = false;
+    hoverFlagOff2(state, val) {
+      state.csvData[val][2] = false;
     },
   },
   // actionオプションで定義
   actions: {
-    hoverFlagOn(ctx) {
-      ctx.commit('hoverFlagOn');
+    hoverFlagOn(ctx, val) {
+      ctx.commit('hoverFlagOn2', val);
     },
-    hoverFlagOff(ctx) {
-      ctx.commit('hoverFlagOff');
+    hoverFlagOff(ctx, val) {
+      ctx.commit('hoverFlagOff2', val);
     },
   },
   modules: {

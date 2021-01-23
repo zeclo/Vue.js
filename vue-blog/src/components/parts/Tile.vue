@@ -5,8 +5,8 @@
   <div class="css-fukidashi">
     <p class="text" v-on:mouseover="mouseOverAction" v-on:mouseleave="mouseLeaveAction">
       ここをマウスオーバーすると・・・</p>
-    <div v-if=$store.state.hoverFlag>
-      <p class="fukidashi">吹き出しが表示されます</p>
+    <div v-if=hoverFlag>
+      <p>吹き出しが表示されます</p>
     </div>
   </div>
 </template>
@@ -14,10 +14,7 @@
 <script lang="ts">
 import {
   defineComponent,
-  reactive,
-  onMounted,
   computed,
-  ref,
 } from 'vue';
 
 import { useStore } from 'vuex';
@@ -35,10 +32,14 @@ export default defineComponent({
     const store = useStore();
 
     const csvData = computed(() => store.state.csvData[Number(props.id)][0]);
-    const hoverFlag = computed(() => store.state.hoverFlag);
+    const hoverFlag = computed(() => store.state.csvData[Number(props.id)][2]);
 
-    const mouseOverAction = () => store.commit('hoverFlagOn');
-    const mouseLeaveAction = () => store.commit('hoverFlagOff');
+    const mouseOverAction = () => {
+      store.dispatch('hoverFlagOn', Number(props.id));
+    };
+    const mouseLeaveAction = () => {
+      store.dispatch('hoverFlagOff', Number(props.id));
+    };
 
     // return内でsetup内で定義したconstを呼び出す
     return {
@@ -54,7 +55,7 @@ export default defineComponent({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .tile {
-      width: 50px;
+      width: 100px;
       position: relative;
       margin:80px 50px 50px;
       padding: 20px;

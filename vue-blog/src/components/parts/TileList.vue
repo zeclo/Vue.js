@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" style="width:500px;background: gray;">
     <h1>タイル一覧の見出し</h1>
     <!-- ループ処理
     <li v-for="(station, index) in appNumber2" :key="index">
